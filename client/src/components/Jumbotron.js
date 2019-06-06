@@ -9,7 +9,7 @@ const Jumbotron = () => {
       <p>Please sign in with Google to access</p>
       <a
         className="nav-link" href="http://localhost:3001/auth/google">
-        <button type="button" class="btn btn-gplus btn-danger"><i class="fab fa-google-plus-g pr-1"></i> Google</button>
+        <button type="button" className="btn btn-gplus btn-danger"><i className="fab fa-google-plus-g pr-1">Google</i></button>
       </a>
     </div>
 

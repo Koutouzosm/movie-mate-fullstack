@@ -58,7 +58,7 @@ const Navigation = props => {
                   onChange={props.handleInputChange}
                 />
                 <InputGroupAddon addonType="append">
-                  <Button color="success" onClick={props.mainSearch}>
+                  <Button disabled={props.searchTerm === '' || props.searchTerm === "Rush Hour".toLowerCase()} color="success" onClick={props.mainSearch}>
                     Search
                   </Button>
                 </InputGroupAddon>

@@ -87,15 +87,15 @@ class Search extends Component {
 
 
 
-  handleSaveMovies = (movieId) => {
-    const movie = this.state.movieList.find(movie => movie.movieId === movieId);
+  // handleSaveMovies = (movieId) => {
+  //   const movie = this.state.movieList.find(movie => movie.movieId === movieId);
 
-    saveMovie(movie)
-      .then(() => {
-        const savedMovieIds = [...this.state.savedMovieIds, movieId];
-        this.setState({ savedMovieIds })
-      })
-  }
+  //   saveMovie(movie)
+  //     .then(() => {
+  //       const savedMovieIds = [...this.state.savedMovieIds, movieId];
+  //       this.setState({ savedMovieIds })
+  //     })
+  // }
 
   retrieveSavedMovies = () => {
     getSavedMovies()
@@ -141,8 +141,8 @@ class Search extends Component {
                   <Row>
                     {
                       this.state.movieRec.map(movie => (
-                        <Col md={3}> 
-                        <Card secondSearch reRun={this.reRun} key={movie.id} className="text-center" title={movie.title} image={movie.poster_path} vote={movie.vote_average} id={movie.id}>
+                        <Col key={movie.id} md={3}> 
+                        <Card secondSearch reRun={this.reRun} className="text-center" title={movie.title} image={movie.poster_path} vote={movie.vote_average} id={movie.id}>
                             {/* <p>
                               {movie.overview}
                             </p> */}

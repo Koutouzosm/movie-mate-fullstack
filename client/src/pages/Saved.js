@@ -1,44 +1,65 @@
 import React, { Component } from 'react';
-// import Jumbotron from '../components/Jumbotron';
-import Row from '../components/Row';
-import Col from '../components/Col';
-import Card from '../components/Card';
-import Div from '../components/Div'
-import { removeMovie, getSavedMovies } from '../utils/API';
-import Navigation from '../components/Navigation';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
-class Saved extends Component {
-  state = {
-    movieList: []
-  };
 
-  // componentDidMount() {
-  //   this.handleGetSavedMovies();
-  // }
 
-  // handleGetSavedMovies = () => {
-  //   getSavedMovies()
-  //     .then(({data: movieList}) => {
-  //       this.setState({ movieList });
-  //     })
-  //     .catch(err => console.log(err));
-  // }
+const USER_QUERY = gql`
+ query UserQuery{
+   user{
+       googleid
+       age
+       gender
+       displayName
+       movies{
+         movie
+       }
+   }
+ }
+`
 
-  // handleRemoveMovie = (movieId) => {
-  //   removeBook(movieId)
-  //     .then(this.handleGetSavedMovies)
-  //     .catch(err => console.log(err));
-  // }
+export class Saved extends Component {
+ render() {
+   let {_id} = this.props.match._id
+   return(
+    <React.Fragment>
+     <div>
+       <h1 className='display-4 my-3'>Saved Movies</h1>
 
-  render() {
-    return (
-      <React.Fragment>
-        <Navigation />
+       <Query query={USER_QUERY} variables={{ _id }}>
+         {
+           ({ loading, error, data }) => {
+             if(loading) return <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+             if(error) console.log(error)
+
+             const { googleid, gender, age, displayName, movie:{
+               movies} } = data.user
+
+             return <React.Fragment>
+
+               {
+                 <h1>{movies}</h1>
+               }
+             </React.Fragment>
+           }
+         }
+       </Query>
+     </div>
+     </React.Fragment>
+   )
+ }
+}
+
+export default Saved;
+
+
+{/* <React.Fragment>
+        <Navigation /> */}
         
         {/* <Jumbotron fluid bg={'dark'} color={'light'} pageTitle={'Viewing Saved Movies'} />
         <div className="container-fluid"> */}
 
-              <Row>
+              {/* <Row>
                 {!this.state.movieList.length
                   ? ''
                   : this.state.movieList.map(movie => {
@@ -58,9 +79,4 @@ class Saved extends Component {
 
           </Row>      
         
-      </React.Fragment>
-    );
-  }
-}
-
-export default Saved;
+      </React.Fragment> */}
