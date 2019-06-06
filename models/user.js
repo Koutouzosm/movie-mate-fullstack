@@ -12,7 +12,15 @@ const userSchema = new Schema({
     },
     thumbnail: {
         type: String
-    }   
+    },   
+    gender: {
+        type: String,
+        required: false
+    },
+    age: {
+        type: Number,
+        required: false
+    }
 });
 
 const User = mongoose.model('user', userSchema);
