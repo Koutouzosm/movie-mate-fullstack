@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const User = require('../models/User')
 
 
 //   const getMovies = async (req, res) => {
@@ -37,16 +37,20 @@ const { User } = require('../models');
   };
   
   const saveMovie = (req, res) => {
-    User.create(req.body)
-      .then(dbMovieData => res.json(dbMovieData))
+      console.log('saved movie hit')
+    User.findByIdAndUpdate(req.user._id, {
+        $push: {movies: req.body}
+    }, {new: true})
+    .then(dbMovieData => res.json(dbMovieData))
       .catch(err => {
         console.log(err);
         res.json(err);
       });
+
   };
   
   const removeMovie = (req, res) => {
-    User.remove({
+    movie.remove({
       _id: req.params.id
     })
       .then(dbMovieData => res.json(dbMovieData))

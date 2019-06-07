@@ -14,9 +14,7 @@ const UserSchema = new Schema({
     thumbnail: {
         type: String
     },
-    movies: {
-        type: []
-    }
+    movies: []
 });
 
 const User = mongoose.model('User', UserSchema);

@@ -8,7 +8,7 @@ const keys = require('./config/keys');
 const app = express();
 const passport = require('passport');
 const profileRoutes = require('./routes/profile-routes');
-
+const routes = require('./routes');
 const PORT = process.env.PORT || 3001;
 
 
@@ -41,6 +41,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/userdb', { useN
 
 
 // set up routes
+app.use(routes);
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 

@@ -22,7 +22,6 @@ const Card = props => {
         <h6 className='card-header' style={cardStyle} >Vote Average: {props.vote}</h6>
       ) : ""}
 
-     
       <div className='card-body' style={cardStyle}>
         {props.children}
       </div>

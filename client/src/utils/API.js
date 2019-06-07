@@ -1,29 +1,27 @@
 import axios from 'axios';
 
 
-const pageArray = [1,2,3];
-const pageArrayRandom = Math.floor(Math.random() * pageArray.length) + 1;
-console.log(pageArrayRandom)
 
 
 export const saveMovie = movieData => {
-    return axios.post('/api/movies', 
-    movieData);
+    return axios.post('/api/user',
+        movieData);
 };
 
 
 export const getSavedMovies = () => {
-    return axios.get('/api/movies');
+    return axios.get('/api/user');
 };
 
 
 export const removeMovie = movieId => {
-    return axios.delete(`/api/movies/${movieId}`);
+    return axios.delete(`/api/user/${movieId}`);
 };
 
 
-export const recMovies = movieId =>
-{
+export const recMovies = movieId => {
+    const pageArray = [1, 2, 3];
+    const pageArrayRandom = Math.floor(Math.random() * pageArray.length) + 1;
     console.log(movieId);
     return axios.get(`https://api.themoviedb.org/3/movie/${movieId}/similar`, {
         params: {
@@ -36,8 +34,7 @@ export const recMovies = movieId =>
 }
 
 
-export const searchTmdb = query =>
-{
+export const searchTmdb = query => {
     return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=&language=en-US&query=&page=1`, {
         params: {
             query: query,

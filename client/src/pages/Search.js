@@ -82,7 +82,7 @@ class Search extends Component {
   };
 
   handleSaveMovie = () => {
-
+    console.log(this.state.movieData);
     //this.state.movieData 
     saveMovie(this.state.movieData).then((res) => {
       console.log(res)
