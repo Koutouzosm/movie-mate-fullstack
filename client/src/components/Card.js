@@ -12,7 +12,7 @@ const Card = props => {
         <h4 className='card-header'>{props.title}</h4>
       ) : ""}
 
-      <button type="button" className="btn btn-outline-success">Save Movie</button>
+      {/* <button type="button" className="btn btn-outline-success">Save Movie</button> */}
 
       {props.image ? (
         <img onClick={props.secondSearch ? () => props.reRun(props.title) : null} value={props.title} src={`http://image.tmdb.org/t/p/w185/${props.image}`} alt={props.title} className='card-img' />

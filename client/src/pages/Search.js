@@ -81,6 +81,14 @@ class Search extends Component {
       .catch(err => console.log(err));
   };
 
+  handleSaveMovie = () => {
+
+    //this.state.movieData 
+    saveMovie(this.state.movieData).then((res) => {
+      console.log(res)
+    }).catch(err => console.log(err))
+  }
+
 
 
 
@@ -107,12 +115,11 @@ class Search extends Component {
                             <p>
                               {this.state.movieData.plot}
                             </p>
-                            {/* <button 
-                              disabled={this.state.savedMovieIds.includes(movie.movieId) ? true : undefined}
-                              onClick={() => this.handleSaveMovie(movie.movieId)}
+                            <button 
+                              onClick={this.handleSaveMovie}
                               className="btn btn-success btn-sm">
                               Save Movie
-                            </button> */}
+                            </button>
                           </Card>
                   )
                 }

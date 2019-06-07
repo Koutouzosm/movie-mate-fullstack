@@ -9,12 +9,14 @@ const UserSchema = new Schema({
         required: true
     },
     googleid: {
-        type: String,
+        type: String
     },
     thumbnail: {
         type: String
     },
-    movies: []
+    movies: {
+        type: []
+    }
 });
 
 const User = mongoose.model('User', UserSchema);
