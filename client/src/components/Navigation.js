@@ -39,8 +39,8 @@ const Navigation = props => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link" to="/matches">
-                Matches
+              <NavLink className="nav-link" to="/saved">
+                Saved
               </NavLink>
             </NavItem>
             <NavItem>

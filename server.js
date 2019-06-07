@@ -1,7 +1,6 @@
 const express = require('express');
 const graphqlHTTP = require("express-graphql");
 const authRoutes = require('./routes/auth-routes');
-const schema = require('./schema');
 const passportSetup = require('./config/passport-setup');
 const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
@@ -36,13 +35,9 @@ app.use(express.json());
 
 app.use(authRoutes);
 
-app.use('/graphql', graphqlHTTP({
-    schema, 
-    graphiql: true
-}));
 
 mongoose.Promise = Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/oauth-test-db', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/userdb', { useNewUrlParser: true });
 
 
 // set up routes

@@ -3,13 +3,17 @@ import Navigation from '../components/Navigation';
 import Row from '../components/Row';
 import Col from '../components/Col';
 import Card from '../components/Card';
-import Div from '../components/Div'
+import Div from '../components/Div';
 import {withFirebase} from '../components/Firebase/index'
 import { searchTmdb, saveMovie, recMovies, removeMovie, getSavedMovies } from '../utils/API';
+
+
+
 
 class Search extends Component {
   state = {
     searchTerm: '',
+    movieList:[],
     movieData: {},
     savedMovieIds: [],
     movieId: "",
@@ -72,13 +76,6 @@ class Search extends Component {
       .then(({ data: movieRec }) => {
         console.log(movieRec);
         this.setState({movieRec: movieRec.results
-          // movieRec: {
-          //   title: movieRec.results.title,
-          //   movieId: movieRec.results.id,
-          //   plot: movieRec.results.overview,
-          //   image: movieRec.results.poster_path,
-          //   vote: movieRec.results.vote_average
-          // }
         })
       })
       .catch(err => console.log(err));
@@ -87,15 +84,15 @@ class Search extends Component {
 
 
 
-  // handleSaveMovies = (movieId) => {
-  //   const movie = this.state.movieList.find(movie => movie.movieId === movieId);
+  handleSaveMovies = (movieId) => {
+    const movie = this.state.movieList.find(movie => movie.movieId === movieId);
 
-  //   saveMovie(movie)
-  //     .then(() => {
-  //       const savedMovieIds = [...this.state.savedMovieIds, movieId];
-  //       this.setState({ savedMovieIds })
-  //     })
-  // }
+    saveMovie(movie)
+      .then(() => {
+        const savedMovieIds = [...this.state.savedMovieIds, movieId];
+        this.setState({ savedMovieIds })
+      })
+  }
 
   retrieveSavedMovies = () => {
     getSavedMovies()
@@ -126,12 +123,12 @@ class Search extends Component {
                             <p>
                               {this.state.movieData.plot}
                             </p>
-                            {/* <button 
+                            <button 
                               disabled={this.state.savedMovieIds.includes(movie.movieId) ? true : undefined}
                               onClick={() => this.handleSaveMovie(movie.movieId)}
                               className="btn btn-success btn-sm">
                               Save Movie
-                            </button> */}
+                            </button>
                           </Card>
                   )
                 }
