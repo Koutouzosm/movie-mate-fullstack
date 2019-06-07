@@ -84,23 +84,7 @@ class Search extends Component {
 
 
 
-  handleSaveMovies = (movieId) => {
-    const movie = this.state.movieList.find(movie => movie.movieId === movieId);
 
-    saveMovie(movie)
-      .then(() => {
-        const savedMovieIds = [...this.state.savedMovieIds, movieId];
-        this.setState({ savedMovieIds })
-      })
-  }
-
-  retrieveSavedMovies = () => {
-    getSavedMovies()
-      .then(({ data: dbSavedMovies }) => {
-        const savedMovieIds = dbSavedMovies.map(({ movieId }) => movieId);
-        this.setState({ savedMovieIds });
-      });
-  }
 
   render() {
     console.log(this.state)
@@ -123,12 +107,12 @@ class Search extends Component {
                             <p>
                               {this.state.movieData.plot}
                             </p>
-                            <button 
+                            {/* <button 
                               disabled={this.state.savedMovieIds.includes(movie.movieId) ? true : undefined}
                               onClick={() => this.handleSaveMovie(movie.movieId)}
                               className="btn btn-success btn-sm">
                               Save Movie
-                            </button>
+                            </button> */}
                           </Card>
                   )
                 }
