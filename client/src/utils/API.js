@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 
-
+export const getUsers = () => {
+    return axios.get('/api/user/matched')
+}
 
 export const saveMovie = movieData => {
     return axios.post('/api/user',
@@ -48,5 +50,6 @@ export default {
     getSavedMovies,
     removeMovie,
     searchTmdb,
-    recMovies
+    recMovies,
+    getUsers
 }

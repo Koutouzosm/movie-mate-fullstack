@@ -131,15 +131,6 @@ class Search extends Component {
                       this.state.movieRec.map(movie => (
                         <Col key={movie.id} md={3}> 
                         <Card secondSearch reRun={this.reRun} className="text-center" title={movie.title} image={movie.poster_path} vote={movie.vote_average} id={movie.id}>
-                            {/* <p>
-                              {movie.overview}
-                            </p> */}
-                            {/* <button 
-                              disabled={this.state.savedMovieIds.includes(movie.movieId) ? true : undefined}
-                              onClick={() => this.handleSaveMovie(movie.movieId)}
-                              className="btn btn-success btn-sm">
-                              Save Movie
-                            </button> */}
                           </Card>
                           </Col>
                       ))
