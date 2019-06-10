@@ -27,6 +27,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve (__dirname, "public", "index.html"))
+});
+
 
 // connection to mongoDB
 
