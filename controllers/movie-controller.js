@@ -3,7 +3,8 @@ const handle = require('../utils/promise-handler')
 
 
   const getUsers = async (req, res) => {
-    const [movieErr, movieList] = await handle(User.findById(req._id));
+    console.log(req.user._id);
+    const [movieErr, movieList] = await handle(User.findById(req.user._id));
     console.log(movieList);
   
     if (movieErr) {
@@ -18,7 +19,7 @@ const handle = require('../utils/promise-handler')
           }
   
         },
-        { _id: { $ne: req._id } }
+        { _id: { $ne: req.user._id } }
       ]
     }).then(function (movieMatches) {
       res.json(movieMatches)
@@ -38,7 +39,6 @@ const handle = require('../utils/promise-handler')
   };
   
   const saveMovie = (req, res) => {
-      console.log('saved movie hit')
     User.findByIdAndUpdate(req.user._id, {
         $push: {movies: req.body}
     }, {new: true})
@@ -51,9 +51,18 @@ const handle = require('../utils/promise-handler')
   };
   
   const removeMovie = (req, res) => {
-    movie.remove({
-      _id: req.params.id
-    })
+    console.log(typeof req.params.id);
+    console.log(req.params.id);
+    console.log(req.user._id);
+    User.findOneAndUpdate({
+      _id: req.user._id
+    }, {
+      $pull: {
+        movies: {
+          movieId: parseInt(req.params.id)
+        }
+      }
+    }, { new: true })
       .then(dbMovieData => res.json(dbMovieData))
       .catch(err => {
         console.log(err);

@@ -29,13 +29,13 @@ const Navigation = props => {
             {/* <a className="nav-link" href="http://localhost:3001/auth/google">
                 Login
               </a> */}
-              <NavLink className="nav-link" to="/">
+              {/* <NavLink className="nav-link" to="/search">
                 Home
-              </NavLink>
+              </NavLink> */}
             </NavItem>
             <NavItem>
               <NavLink className="nav-link" to="/search">
-                Search
+                Home
               </NavLink>
             </NavItem>
             <NavItem>

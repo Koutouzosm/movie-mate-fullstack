@@ -41,11 +41,14 @@ export class Saved extends Component {
       .catch(err => console.log(err))
   }
 
-  // handleRemovie = (movieId) => {
-  //   removeMovie(movieId)
-  //     .then(this.handleGetSavedMovies)
-  //     .catch(err => console.log(err));
-  // }
+  handleRemovie = (movieId) => {
+    removeMovie(movieId)
+      .then(({data}) => {
+        console.log(data);
+        this.handleGetSavedMovies();
+      })
+      .catch(err => console.log(err));
+  }
 
   
 
@@ -64,11 +67,11 @@ export class Saved extends Component {
                         <Col key={movie.movieId} md={6}>
                           <Card title={movie.title} image={movie.image ? movie.image : undefined}>
                             <p>{movie.plot}</p>
-                            {/* <button
+                            <button
                               onClick={() => this.handleRemovie(movie.movieId)}
                               className="btn btn-danger btn-sm">
-                              Remove Book
-                            </button> */}
+                              Remove Movie
+                            </button>
                           </Card>
                         </Col>
                       );
