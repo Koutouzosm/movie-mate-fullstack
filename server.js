@@ -32,8 +32,6 @@ app.use(passport.session());
 app.use (express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(authRoutes);
-
 mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/userdb', { useNewUrlParser: true });
 
