@@ -1,6 +1,8 @@
 import React from 'react';
 
 
+let loginPath = (process.env.NODE_ENV === "production" ? "https://daily-inventory.herokuapp.com/auth/google" : "http://localhost:3001
+
 const Jumbotron = () => {
   return (
     <div
@@ -8,7 +10,8 @@ const Jumbotron = () => {
       <h1>Movie-Mate</h1>
       <p>Please sign in with Google to access</p>
       <a
-        className="nav-link" href="https://movie-mate-fullstack.herokuapp.com/auth/google">
+        className="nav-link"
+        as='a' href={loginPath}>
         <button type="button" className="btn btn-gplus btn-danger"><i className="fab fa-google-plus-g pr-1">Google</i></button>
       </a>
     </div>
