@@ -29,28 +29,18 @@ app.use(passport.session());
 
 
 // connection to mongoDB
-
 app.use (express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(authRoutes);
 
-
 mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/userdb', { useNewUrlParser: true });
-
 
 // set up routes
 app.use(routes);
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
-
-
-
-//  create our home route
-app.get('/', (req, res) => {
-    res.render('home', {user: req.user});
-})
 
 
 app.listen (PORT, () => {

@@ -2,7 +2,6 @@
   "name": "moviemate",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://koutouzosm.github.io/movie-mate-react",
   "dependencies": {
     "animate.css": "^3.7.1",
     "axios": "^0.19.0",
