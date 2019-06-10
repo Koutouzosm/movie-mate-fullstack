@@ -9,6 +9,7 @@ const app = express();
 const passport = require('passport');
 const profileRoutes = require('./routes/profile-routes');
 const routes = require('./routes');
+const path = require('path');
 const PORT = process.env.PORT || 3001;
 
 
@@ -25,11 +26,6 @@ app.use(cookieSession( {
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve (__dirname, "public", "index.html"))
-});
 
 
 // connection to mongoDB
