@@ -5,6 +5,10 @@ export const getUsers = () => {
     return axios.get('/api/user/matched')
 }
 
+export const getMe = () => {
+    return axios.get('/api/user/me')
+}
+
 export const saveMovie = movieData => {
     return axios.post('/api/user',
         movieData);

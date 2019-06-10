@@ -1,6 +1,33 @@
 const User = require('../models/User')
 const handle = require('../utils/promise-handler')
 
+ const getMe = async (req, res) => {
+    console.log(req.user._id);
+    const [movieErr, movieList] = await handle(User.findById(req.user._id));
+    console.log(movieList);
+  
+    if (movieErr) {
+      return res.status(500).json(err);
+    }
+    console.log(movieList);
+    User.find({
+      $and: [
+        {
+          movies: {
+            $in: [...movieList.movies]
+          }
+  
+        },
+        { _id: { $eq: req.user._id } }
+      ]
+    }).then(function (me) {
+      res.json(me)
+    }).catch(function (err) {
+      console.log(err);
+      res.status(422).json(err)
+    })
+  }
+
 
   const getUsers = async (req, res) => {
     console.log(req.user._id);
@@ -74,5 +101,6 @@ const handle = require('../utils/promise-handler')
     getSavedMovies,
     saveMovie,
     removeMovie,
-    getUsers
+    getUsers,
+    getMe
   }

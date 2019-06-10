@@ -1,29 +1,48 @@
 import React, { Component } from 'react';
 import Navigation from '../components/Navigation';
+import Card from '../components/Card';
 import Col from '../components/Col';
 import Row from '../components/Row';
-import Card from '../components/Card';
-import { searchTmdb, saveMovie, recMovies, removeMovie, getSavedMovies, getUsers } from '../utils/API';
+import Form from '../components/Form'
+import Matchcard from '../components/Matchcard';
+import {withFirebase} from '../components/Firebase/index'
+import { searchTmdb, saveMovie, recMovies, removeMovie, getSavedMovies, getUsers, getMe } from '../utils/API';
 import Div from '../components/Div';
-import Matchcard from '../components/Matchcard'
 
 
 
 
 
 
-export class Saved extends Component {
+export class SavedBase extends Component {
 
   state = {
     movieList: [],
-    userList: []
+    userList: [],
+    me: [],
+    sender: '',
+    receiver: '',
+    chat: [],
+    entireChat: []
   };
 
   componentDidMount() {
     this.handleGetSavedMovies();
     this.handleGetUsers();
-  }
+    this.handleGetMe();
+  //   this.props.firebase.chat().on('value', snapshot => {
+  //     if (snapshot.val()) {
+  //       this.setState({entireChat: snapshot.val()})
+  //     }
+  // })
+}
 
+  handleGetMe = () => {
+    getMe()
+      .then(res => {
+        this.setState({ me: res.data, sender: res.data[0].displayName })
+      })
+  }
 
 
   handleGetSavedMovies = () => {
@@ -51,11 +70,36 @@ export class Saved extends Component {
       .catch(err => console.log(err));
   }
 
+  setReceiver = (event) => {
+    this.setState({receiver: event.target.value}, () => this.getCurrentChat())
+  }
 
+  getCurrentChat = () => {
+      // let currentChat = Object.values(this.state.entireChat).filter(
+      //   message =>
+      //     message.sender === this.state.sender &&
+      //     message.receiver === this.state.receiver
+      // );
+      // this.setState({ chat: currentChat });
+      this.props.firebase.chat().on('value', snapshot => {
+
+        let yourMessages = Object.values(snapshot.val()).filter(message => {
+
+          return message.sender === this.state.sender && message.receiver === this.state.receiver || message.sender === this.state.receiver && message.receiver === this.state.sender
+        })
+
+      this.setState({chat: yourMessages})
+    })
+
+  }
+  
+  
 
 
 
   render() {
+    console.log(this.state)
+    console.log(this.props)
     return (
       <React.Fragment>
         <Navigation />
@@ -85,15 +129,42 @@ export class Saved extends Component {
                 : this.state.userList.map(match => {
                   return (
                       <Matchcard key={match.userId} title={match.displayName} image={match.thumbnail ? match.thumbnail : undefined}>
-                        {/* <button
-                          onClick={() => this.handleRemovie(movie.movieId)}
+                        <button
+                        value={match.displayName}
+                          onClick={(e) => this.setReceiver(e)}
                           className="btn btn-danger btn-sm">
-                          Remove Movie
-                            </button> */}
+                          Chat with {match.displayName}
+                            </button>
                       </Matchcard>
                   );
                 })}
                 </div>
+          </Row>
+          <Row className="justify-content-center">
+          <div className="col-12 col-md-6">
+                {this.state.receiver !== '' && (
+                  this.state.chat.map((message, index) => (
+                    message.sender === this.state.sender ? (
+                      <div className="d-flex flex-column align-items-end my-1" key={index}>
+                        <div>{message.sender}</div>
+                        <div>{message.timestamp}</div>
+                        <div className={`badge badge-primary msgText mb-2`}>{message.message}</div>
+                      </div>
+                    ) : (
+                      <div className="d-flex flex-column align-items-start my-1" key={message.message}>
+                        <div>{message.sender}</div>
+                        <div>{message.timestamp}</div>
+                        <div className={`badge badge-success msgText mb-2`}>{message.message}</div>
+                    </div>
+                    )
+                  ))
+                  
+                )}
+                {this.state.receiver !== '' && (
+                <Form sender={this.state.sender} receiver={this.state.receiver} />
+                )}
+            </div>
+
           </Row>
         </div>
       </React.Fragment>
@@ -101,5 +172,6 @@ export class Saved extends Component {
   }
 }
 
+const Saved = withFirebase(SavedBase)
 
 export default Saved;
