@@ -7,7 +7,7 @@ router
   .route('/logout')
   .get((req, res) => {
   // handle with passport
-    let redirectPath = (process.env.NODE_ENV === "production") ? "/" : "http://localhost:3000"
+    let redirectPath = (process.env.NODE_ENV === "production") ? "https://daily-inventory.herokuapp.com/" : "http://localhost:3000"
     req.logout();
     res.redirect(redirectPath);
   });
@@ -24,7 +24,7 @@ router
 router
   .route('/google/redirect')
   .get(passport.authenticate('google'), (req, res) => {
-    let redirectPath = (process.env.NODE_ENV === "production") ? "/search" : "http://localhost:3000"
+    let redirectPath = (process.env.NODE_ENV === "production") ? "https://daily-inventory.herokuapp.com/search" : "http://localhost:3000"
     redirectPath = `${redirectPath}/search?userId=${req.user._id}`;
     res.redirect(redirectPath);
   });
