@@ -11,7 +11,7 @@ const Jumbotron = () => {
       <p>Please sign in with Google to access</p>
       <a
         className="nav-link"
-        as='a' href={loginPath}>
+        as='a' href="https://movie-mate-fullstack.herokuapp.com/auth/google">
         <button type="button" className="btn btn-gplus btn-danger"><i className="fab fa-google-plus-g pr-1">Google</i></button>
       </a>
     </div>
