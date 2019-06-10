@@ -17,7 +17,7 @@ passport.deserializeUser((id, done)=> {
 passport.use(
    new GoogleStrategy({
     // options for the google stratagy
-    callbackURL:'/auth/google/redirect',
+    callbackURL:'https://movie-mate-fullstack.herokuapp.com/auth/google/redirect',
     clientID:keys.google.clientID,
     clientSecret:keys.google.clientSecret
  }, (accessToken, refreshToken, profile, done) => {
