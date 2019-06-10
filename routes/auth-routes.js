@@ -24,7 +24,7 @@ router
 router
   .route('/google/redirect')
   .get(passport.authenticate('google'), (req, res) => {
-    let redirectPath = (process.env.NODE_ENV === "production") ? "https://movie-mate-fullstack.herokuapp.com/search" : "http://localhost:3000"
+    let redirectPath = (process.env.NODE_ENV === "production") ? "https://movie-mate-fullstack.herokuapp.com" : "http://localhost:3000"
     redirectPath = `${redirectPath}/search?userId=${req.user._id}`;
     res.redirect(redirectPath);
   });
