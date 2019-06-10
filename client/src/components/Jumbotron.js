@@ -1,7 +1,7 @@
 import React from 'react';
 
 
- loginPath = (process.env.NODE_ENV === "production" ? "https://daily-inventory.herokuapp.com/auth/google" : "http://localhost:3001"
+ let loginPath = (process.env.NODE_ENV === "production") ? "https://movie-mate-fullstack.herokuapp.com/auth/google" : "http://localhost:3001/auth/google"
 
 const Jumbotron = () => {
   return (
