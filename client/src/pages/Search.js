@@ -108,7 +108,7 @@ class Search extends Component {
         <div className="container-fluid">
 
               <Row>
-                <Col className="text-center" md={4}>
+                <Col className="text-center" md={6}>
                 {
                   !Object.keys(this.state.movieData).length ? "Search For A Movie To Begin" : (
                           <Card className="text-center" title={this.state.movieData.title} image={this.state.movieData.image} vote={this.state.movieData.vote} movieId={this.state.movieData.movieId}>
@@ -124,7 +124,7 @@ class Search extends Component {
                   )
                 }
                 </Col>
-                <Col md={8}>
+                <Col md={6}>
                   <Div>
                   <Row>
                     {
