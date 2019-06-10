@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-let loginPath = (process.env.NODE_ENV === "production" ? "https://daily-inventory.herokuapp.com/auth/google" : "http://localhost:3001
+ loginPath = (process.env.NODE_ENV === "production" ? "https://daily-inventory.herokuapp.com/auth/google" : "http://localhost:3001"
 
 const Jumbotron = () => {
   return (
@@ -18,6 +18,7 @@ const Jumbotron = () => {
 
   );
 };
+
 export default Jumbotron;
 
 
