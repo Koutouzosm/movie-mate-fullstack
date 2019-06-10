@@ -1,4 +1,4 @@
-const User = require('../models/User')
+const { User } = require('../models')
 const handle = require('../utils/promise-handler')
 
  const getMe = async (req, res) => {
