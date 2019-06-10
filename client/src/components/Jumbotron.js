@@ -8,7 +8,7 @@ const Jumbotron = () => {
       <h1>Movie-Mate</h1>
       <p>Please sign in with Google to access</p>
       <a
-        className="nav-link" href="/auth/google">
+        className="nav-link" href="https://daily-inventory.herokuapp.com/auth/google">
         <button type="button" className="btn btn-gplus btn-danger"><i className="fab fa-google-plus-g pr-1">Google</i></button>
       </a>
     </div>
