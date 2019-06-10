@@ -36,9 +36,9 @@ mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/userdb', { useNewUrlParser: true });
 
 // set up routes
-app.use(routes);
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
+app.use(routes);
 
 
 app.listen (PORT, () => {
