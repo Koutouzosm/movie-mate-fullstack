@@ -7,7 +7,7 @@ import React from 'react';
 const Jumbotron = () => {
   return (
     <div
-      className="jumbotron text-center" style={jumboStyle}>
+      className="jumbotron text-center">
       <h1>Movie-Mate</h1>
       <p>Please sign in with Google to access</p>
       <a
