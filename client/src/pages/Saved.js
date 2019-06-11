@@ -103,7 +103,7 @@ export class SavedBase extends Component {
             {this.state.me.length > 0
               ? 
               <div>Please save some movies</div>
-              : this.state.me[0].movies.map(movie => {
+              : this.state.me.movies.map(movie => {
                 return (
 
                     <Card key={movie.movieId} title={movie.title} image={movie.image ? movie.image : undefined}>
