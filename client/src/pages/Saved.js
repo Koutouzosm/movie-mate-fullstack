@@ -94,15 +94,16 @@ export class SavedBase extends Component {
   render() {
     console.log(this.state)
     console.log(this.props)
+    console.log(this.state.me.movies)
     return (
       <React.Fragment>
         <Navigation />
         <div className="container-fluid">
           <Row>
             <div className="col-12 col-md-6">
-            {this.state.movieList.length === 0
+            {this.state.me.movies.length === 0
               ? <div>Please save some movies</div>
-              : this.state.movieList[0].movies.map(movie => {
+              : this.state.me.movies.map(movie => {
                 return (
 
                     <Card key={movie.movieId} title={movie.title} image={movie.image ? movie.image : undefined}>
