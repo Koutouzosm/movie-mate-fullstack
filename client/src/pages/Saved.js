@@ -100,9 +100,10 @@ export class SavedBase extends Component {
         <div className="container-fluid">
           <Row>
             <div className="col-12 col-md-6">
-            {this.state.movieList.length === 0
-              ? <div>Please save some movies</div>
-              : this.state.movieList[0].movies.map(movie => {
+            {this.state.me.length > 0
+              ? 
+              <div>Please save some movies</div>
+              : this.state.me[0].movies.map(movie => {
                 return (
 
                     <Card key={movie.movieId} title={movie.title} image={movie.image ? movie.image : undefined}>
@@ -120,7 +121,7 @@ export class SavedBase extends Component {
 
               {this.state.userList.length === 0
                 ? <div>You currently have no matches</div>
-                : this.state.userList.map(match => {
+                : this.state.me.map(match => {
                   return (
                       <Matchcard key={match.userId} title={match.displayName} image={match.thumbnail ? match.thumbnail : undefined}>
                         <button

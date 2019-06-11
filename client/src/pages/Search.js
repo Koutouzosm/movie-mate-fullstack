@@ -9,8 +9,6 @@ import {withFirebase} from '../components/Firebase/index'
 import { searchTmdb, saveMovie, recMovies } from '../utils/API';
 
 
-
-
 class Search extends Component {
   state = {
     searchTerm: '',
@@ -20,24 +18,13 @@ class Search extends Component {
     movieId: "",
     movieRec: [],
     currentChat: []
-  };
-
-  // componentDidMount() {
-  //   this.props.firebase.chat().on('value', snapshot => {
-  //     this.setState({currentChat: Object.values(snapshot.val())})
-  //   }) 
-  // }
-
-
- 
+  }; 
 
   reRun = (title) => {
     this.setState({
       searchTerm: title
     }, this.mainSearch)
   }
-
-
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -91,10 +78,6 @@ class Search extends Component {
   }
 
 
-
-
-
-
   render() {
     console.log(this.state)
     console.log(this.props)
@@ -145,7 +128,5 @@ class Search extends Component {
     );
   }
 }
-
-// const Home = withFirebase(HomeBase)
 
 export default Search;
