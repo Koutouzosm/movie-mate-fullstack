@@ -16,6 +16,7 @@ const FormBase = (props) => {
         }
   
         props.firebase.send(messageObject)
+        setMessage('')
       }
 
     return (

@@ -44,7 +44,7 @@ const Navigation = props => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <a className="nav-link" href="http://localhost:3001/auth/logout">
+              <a className="nav-link" href="https://movie-mate-fullstack.herokuapp.com/auth/logout">
                 Logout
               </a>
             </NavItem>
