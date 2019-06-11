@@ -4,7 +4,7 @@ import Card from '../components/Card';
 import Row from '../components/Row';
 import Form from '../components/Form'
 import Matchcard from '../components/Matchcard';
-import {withFirebase} from '../components/Firebase/index'
+import { withFirebase } from '../components/Firebase/index'
 import { searchTmdb, saveMovie, recMovies, removeMovie, getSavedMovies, getUsers, getMe } from '../utils/API';
 
 
@@ -24,12 +24,12 @@ export class SavedBase extends Component {
     this.handleGetSavedMovies();
     this.handleGetUsers();
     this.handleGetMe();
-  //   this.props.firebase.chat().on('value', snapshot => {
-  //     if (snapshot.val()) {
-  //       this.setState({entireChat: snapshot.val()})
-  //     }
-  // })
-}
+    //   this.props.firebase.chat().on('value', snapshot => {
+    //     if (snapshot.val()) {
+    //       this.setState({entireChat: snapshot.val()})
+    //     }
+    // })
+  }
 
   handleGetMe = () => {
     getMe()
@@ -65,29 +65,29 @@ export class SavedBase extends Component {
   }
 
   setReceiver = (event) => {
-    this.setState({receiver: event.target.value}, () => this.getCurrentChat())
+    this.setState({ receiver: event.target.value }, () => this.getCurrentChat())
   }
 
   getCurrentChat = () => {
-      // let currentChat = Object.values(this.state.entireChat).filter(
-      //   message =>
-      //     message.sender === this.state.sender &&
-      //     message.receiver === this.state.receiver
-      // );
-      // this.setState({ chat: currentChat });
-      this.props.firebase.chat().on('value', snapshot => {
+    // let currentChat = Object.values(this.state.entireChat).filter(
+    //   message =>
+    //     message.sender === this.state.sender &&
+    //     message.receiver === this.state.receiver
+    // );
+    // this.setState({ chat: currentChat });
+    this.props.firebase.chat().on('value', snapshot => {
 
-        let yourMessages = Object.values(snapshot.val()).filter(message => {
+      let yourMessages = Object.values(snapshot.val()).filter(message => {
 
-          return message.sender === this.state.sender && message.receiver === this.state.receiver || message.sender === this.state.receiver && message.receiver === this.state.sender
-        })
+        return message.sender === this.state.sender && message.receiver === this.state.receiver || message.sender === this.state.receiver && message.receiver === this.state.sender
+      })
 
-      this.setState({chat: yourMessages})
+      this.setState({ chat: yourMessages })
     })
 
   }
-  
-  
+
+
 
 
 
@@ -100,20 +100,25 @@ export class SavedBase extends Component {
         <div className="container-fluid">
           <Row>
             <div className="col-12 col-md-6">
-            {this.state.me.length > 0 && (
-              this.state.me[0].movies.map(movie => {
-                return (
+              {this.state.me.length > 0 && (
+                this.state.movies[0].movies === 0 ? (
+                  <div>Save some movies</div>
+                ) : (
+                    this.state.me[0].movies.map(movie => {
+                      return (
 
-                    <Card key={movie.movieId} title={movie.title} image={movie.image ? movie.image : undefined}>
-                      <p>{movie.plot}</p>
-                      <button
-                        onClick={() => this.handleRemovie(movie.movieId)}
-                        className="btn btn-danger btn-sm">
-                        Remove Movie
+                        <Card key={movie.movieId} title={movie.title} image={movie.image ? movie.image : undefined}>
+                          <p>{movie.plot}</p>
+                          <button
+                            onClick={() => this.handleRemovie(movie.movieId)}
+                            className="btn btn-danger btn-sm">
+                            Remove Movie
                             </button>
-                    </Card>
-                );
-              }))}
+                        </Card>
+                      );
+                    }
+                    )
+                  ))}
             </div>
             <div className="col-12 col-md-6">
 
@@ -121,41 +126,41 @@ export class SavedBase extends Component {
                 ? <div>You currently have no matches</div>
                 : this.state.userList.map(match => {
                   return (
-                      <Matchcard key={match.userId} title={match.displayName} image={match.thumbnail ? match.thumbnail : undefined}>
-                        <button
+                    <Matchcard key={match.userId} title={match.displayName} image={match.thumbnail ? match.thumbnail : undefined}>
+                      <button
                         value={match.displayName}
-                          onClick={(e) => this.setReceiver(e)}
-                          className="btn btn-danger btn-sm">
-                          Chat with {match.displayName}
-                            </button>
-                      </Matchcard>
+                        onClick={(e) => this.setReceiver(e)}
+                        className="btn btn-danger btn-sm">
+                        Chat with {match.displayName}
+                      </button>
+                    </Matchcard>
                   );
                 })}
-                </div>
+            </div>
           </Row>
           <Row className="justify-content-center">
-          <div className="col-12 col-md-6">
-                {this.state.receiver !== '' && (
-                  this.state.chat.map((message, index) => (
-                    message.sender === this.state.sender ? (
-                      <div className="d-flex flex-column align-items-end my-1" key={index}>
-                        <div>{message.sender}</div>
-                        <div>{message.timestamp}</div>
-                        <div className={`badge badge-primary msgText mb-2`}>{message.message}</div>
-                      </div>
-                    ) : (
+            <div className="col-12 col-md-6">
+              {this.state.receiver !== '' && (
+                this.state.chat.map((message, index) => (
+                  message.sender === this.state.sender ? (
+                    <div className="d-flex flex-column align-items-end my-1" key={index}>
+                      <div>{message.sender}</div>
+                      <div>{message.timestamp}</div>
+                      <div className={`badge badge-primary msgText mb-2`}>{message.message}</div>
+                    </div>
+                  ) : (
                       <div className="d-flex flex-column align-items-start my-1" key={message.message}>
                         <div>{message.sender}</div>
                         <div>{message.timestamp}</div>
                         <div className={`badge badge-success msgText mb-2`}>{message.message}</div>
-                    </div>
+                      </div>
                     )
-                  ))
-                  
-                )}
-                {this.state.receiver !== '' && (
+                ))
+
+              )}
+              {this.state.receiver !== '' && (
                 <Form sender={this.state.sender} receiver={this.state.receiver} />
-                )}
+              )}
             </div>
 
           </Row>
