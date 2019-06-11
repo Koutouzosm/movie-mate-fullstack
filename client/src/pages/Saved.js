@@ -101,9 +101,9 @@ export class SavedBase extends Component {
         <div className="container-fluid">
           <Row>
             <div className="col-12 col-md-6">
-            {this.state.me.movies.length === 0
+            {this.state.me[0].movies.length === 0
               ? <div>Please save some movies</div>
-              : this.state.me.movies.map(movie => {
+              : this.state.me[0].movies.map(movie => {
                 return (
 
                     <Card key={movie.movieId} title={movie.title} image={movie.image ? movie.image : undefined}>
