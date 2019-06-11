@@ -4,8 +4,9 @@ import Row from '../components/Row';
 import Col from '../components/Col';
 import Card from '../components/Card';
 import Div from '../components/Div';
+import Reccard from '../components/Reccard'
 import {withFirebase} from '../components/Firebase/index'
-import { searchTmdb, saveMovie, recMovies, removeMovie, getSavedMovies } from '../utils/API';
+import { searchTmdb, saveMovie, recMovies } from '../utils/API';
 
 
 
@@ -130,8 +131,8 @@ class Search extends Component {
                     {
                       this.state.movieRec.map(movie => (
                         <Col key={movie.id} md={3}> 
-                        <Card secondSearch reRun={this.reRun} className="text-center" title={movie.title} image={movie.poster_path} vote={movie.vote_average} id={movie.id}>
-                          </Card>
+                        <Reccard secondSearch reRun={this.reRun} className="text-center" title={movie.title} image={movie.poster_path} vote={movie.vote_average} id={movie.id}>
+                          </Reccard>
                           </Col>
                       ))
                     }
