@@ -4,7 +4,8 @@ import React from 'react';
  let loginPath = (process.env.NODE_ENV === "production") ? "https://movie-mate-fullstack.herokuapp.com/auth/google" : "http://localhost:3001"
 
 const jumboStyle = {
-  backgroundImage: url('./images/moviemate.png')
+  backgroundImage: url('./images/moviemate.png'),
+  backgroundSize: "cover"
 }
 
 const Jumbotron = () => {
