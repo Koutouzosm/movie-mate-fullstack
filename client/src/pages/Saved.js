@@ -55,6 +55,7 @@ export class SavedBase extends Component {
     removeMovie(movieId)
       .then(({ data }) => {
         this.handleGetSavedMovies();
+        window.location.reload();
       })
       .catch(err => console.log(err));
   }
