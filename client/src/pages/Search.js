@@ -5,7 +5,6 @@ import Col from '../components/Col';
 import Card from '../components/Card';
 import Div from '../components/Div';
 import Reccard from '../components/Reccard'
-import {withFirebase} from '../components/Firebase/index'
 import { searchTmdb, saveMovie, recMovies } from '../utils/API';
 
 
@@ -71,7 +70,7 @@ class Search extends Component {
 
   handleSaveMovie = () => {
     console.log(this.state.movieData);
-    //this.state.movieData 
+    // this.state.movieData 
     saveMovie(this.state.movieData).then((res) => {
       console.log(res)
     }).catch(err => console.log(err))

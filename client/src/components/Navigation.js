@@ -13,6 +13,8 @@ import {
   Input
 } from 'reactstrap';
 
+let logoutPath = (process.env.NODE_ENV === "production") ? "https://movie-mate-fullstack.herokuapp.com/auth/logout" : "http://localhost:3001/auth/logout"
+
 const Navigation = props => {
   const [isOpen, toggle] = useState(false);
 
@@ -26,12 +28,6 @@ const Navigation = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-            {/* <a className="nav-link" href="http://localhost:3001/auth/google">
-                Login
-              </a> */}
-              {/* <NavLink className="nav-link" to="/search">
-                Home
-              </NavLink> */}
             </NavItem>
             <NavItem>
               <NavLink className="nav-link" to="/search">
@@ -44,7 +40,7 @@ const Navigation = props => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <a className="nav-link" href="https://movie-mate-fullstack.herokuapp.com/auth/logout">
+              <a className="nav-link" href={logoutPath}>
                 Logout
               </a>
             </NavItem>

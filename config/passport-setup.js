@@ -14,10 +14,12 @@ passport.deserializeUser((id, done)=> {
 });
 
 
+const redirectPath = process.env.NODE_ENV === "production" ? ('https://movie-mate-fullstack.herokuapp.com/auth/google/redirect') : ("http://localhost:3001/auth/google/redirect")
+
 passport.use(
    new GoogleStrategy({
     // options for the google stratagy
-    callbackURL:'https://movie-mate-fullstack.herokuapp.com/auth/google/redirect',
+    callbackURL:redirectPath,
     clientID:keys.google.clientID,
     clientSecret:keys.google.clientSecret
  }, (accessToken, refreshToken, profile, done) => {
