@@ -6,7 +6,8 @@ import Card from '../components/Card';
 import Div from '../components/Div';
 import Reccard from '../components/Reccard'
 import { searchTmdb, saveMovie, recMovies } from '../utils/API';
-import { Redirect } from 'react-router-dom'
+
+
 
 
 class Search extends Component {
@@ -75,7 +76,6 @@ class Search extends Component {
     saveMovie(this.state.movieData).then((res) => {
     }).catch(err => console.log(err))
   }
-
 
   render() {
     console.log(this.state)
