@@ -27,7 +27,7 @@
     "graphql-tag": "^2.10.1",
     "if-env": "^1.0.4",
     "moment": "^2.24.0",
-    "mongoose": "^5.5.12",
+    "mongoose": "^5.7.5",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^2.0.0",
     "react-apollo": "^2.5.6"
